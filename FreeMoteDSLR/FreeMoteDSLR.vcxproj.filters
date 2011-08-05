@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="dialogs">
+      <UniqueIdentifier>{64bed894-a98c-4c24-847b-27b108a2f568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{9c4a9ac4-670c-4648-91a8-cd6971e12411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs">
+      <UniqueIdentifier>{839eab58-6593-4626-9c27-0e1af5598e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wrappers">
+      <UniqueIdentifier>{00016d42-5dd1-46ed-838a-07f1f09105ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exceptions">
+      <UniqueIdentifier>{d5a443e9-0542-4689-b003-4a746597efa9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dialogs\AboutDlg.cpp">
+      <Filter>dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\MainDlg.cpp">
+      <Filter>dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="wrappers\Camera.cpp">
+      <Filter>wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="wrappers\CameraManager.cpp">
+      <Filter>wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="wrappers\Image.cpp">
+      <Filter>wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="exceptions\ArgumentException.cpp">
+      <Filter>exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="exceptions\InvalidOperationException.cpp">
+      <Filter>exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="exceptions\MyException.cpp">
+      <Filter>exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeMoteDSLR.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dialogs\AboutDlg.h">
+      <Filter>dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\MainDlg.h">
+      <Filter>dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="resources\resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+    <ClInclude Include="wrappers\Camera.h">
+      <Filter>wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="wrappers\CameraManager.h">
+      <Filter>wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="wrappers\Image.h">
+      <Filter>wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\ArgumentException.h">
+      <Filter>exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\InvalidOperationException.h">
+      <Filter>exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\MyException.h">
+      <Filter>exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeMoteDSLR.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\FreeMoteDSLR.ico">
+      <Filter>resources</Filter>
+    </None>
+    <None Include="..\Libs\DPPDLL.dll">
+      <Filter>Libs</Filter>
+    </None>
+    <None Include="..\Libs\DPPLibCom.dll">
+      <Filter>Libs</Filter>
+    </None>
+    <None Include="..\Libs\DPPRSC.dll">
+      <Filter>Libs</Filter>
+    </None>
+    <None Include="..\Libs\EdsImage.dll">
+      <Filter>Libs</Filter>
+    </None>
+    <None Include="..\Libs\MLib.dll">
+      <Filter>Libs</Filter>
+    </None>
+    <None Include="..\Libs\Ucs32P.dll">
+      <Filter>Libs</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\FreeMoteDSLR.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\Libs\EDSDK.dll">
+      <Filter>Libs</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

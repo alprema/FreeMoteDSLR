@@ -54,20 +54,9 @@ EdsError EDSCALLBACK handleObjectEvent(EdsObjectEvent event, EdsBaseRef object, 
 		errorCode = EdsDownloadComplete(directoryItem);
 	}
 
-	EdsStreamRef fileStream;
-	if (EDS_ERR_OK == errorCode)
-	{
-		errorCode = EdsCreateFileStream(directoryItemInfo.szFileName, kEdsFileCreateDisposition_CreateAlways, kEdsAccess_ReadWrite, &fileStream);
-	}
-
 	if (EDS_ERR_OK == errorCode)
 	{
 		errorCode = EdsSeek(memStream, 0, kEdsSeek_Begin);
-	}
-
-	if (EDS_ERR_OK == errorCode)
-	{
-		errorCode = EdsCopyData(memStream, directoryItemInfo.size, fileStream);
 	}
 
 	if (object)
@@ -89,11 +78,6 @@ EdsError EDSCALLBACK handleObjectEvent(EdsObjectEvent event, EdsBaseRef object, 
 		memStream = NULL;
 	}
 
-	if (NULL != fileStream)
-	{
-		EdsRelease(fileStream);
-		memStream = NULL;
-	}
 	return errorCode;
 
 }

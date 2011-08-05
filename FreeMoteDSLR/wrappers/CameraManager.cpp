@@ -4,6 +4,7 @@
 #include "../exceptions/InvalidOperationException.h"
 #include <EDSDK.h>
 
+// TODO: Simplify the singleton pattern
 int CameraManager::instances_count_ = 0;
 
 // Goes through the list of cameras connected to the computer
