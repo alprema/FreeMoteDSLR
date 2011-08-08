@@ -16,6 +16,9 @@
     <Filter Include="exceptions">
       <UniqueIdentifier>{d5a443e9-0542-4689-b003-4a746597efa9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scheduling">
+      <UniqueIdentifier>{ffee0248-9cc7-4e24-bdc5-41d331d8bdde}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dialogs\AboutDlg.cpp">
@@ -44,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="FreeMoteDSLR.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="scheduling\TaskRunner.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
+    <ClCompile Include="exceptions\SysException.cpp">
+      <Filter>exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dialogs\AboutDlg.h">
@@ -75,6 +84,15 @@
     </ClInclude>
     <ClInclude Include="FreeMoteDSLR.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="scheduling\TaskRunner.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\Task.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\SysException.h">
+      <Filter>exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\FreeMoteDSLR.ico">

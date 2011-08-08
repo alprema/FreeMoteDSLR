@@ -139,6 +139,8 @@
   <ItemGroup>
     <ClCompile Include="dialogs\AboutDlg.cpp" />
     <ClCompile Include="dialogs\MainDlg.cpp" />
+    <ClCompile Include="exceptions\SysException.cpp" />
+    <ClCompile Include="scheduling\TaskRunner.cpp" />
     <ClCompile Include="wrappers\Camera.cpp" />
     <ClCompile Include="wrappers\CameraManager.cpp" />
     <ClCompile Include="wrappers\Image.cpp" />
@@ -154,7 +156,10 @@
   <ItemGroup>
     <ClInclude Include="dialogs\AboutDlg.h" />
     <ClInclude Include="dialogs\MainDlg.h" />
+    <ClInclude Include="exceptions\SysException.h" />
     <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="scheduling\Task.h" />
+    <ClInclude Include="scheduling\TaskRunner.h" />
     <ClInclude Include="wrappers\Camera.h" />
     <ClInclude Include="wrappers\CameraManager.h" />
     <ClInclude Include="wrappers\Image.h" />
