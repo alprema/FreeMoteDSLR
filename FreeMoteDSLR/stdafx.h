@@ -31,3 +31,8 @@ extern CAppModule _Module;
 #else
   #pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
+
+// Message sent by the DownloadTask when it's done
+#define WM_IMAGE_DOWNLOADED (WM_USER + 1)
+// Message sent by the PreviewTask when it's done
+#define WM_PREVIEW_GENERATED (WM_USER + 2)

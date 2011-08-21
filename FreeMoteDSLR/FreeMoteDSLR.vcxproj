@@ -140,7 +140,13 @@
     <ClCompile Include="dialogs\AboutDlg.cpp" />
     <ClCompile Include="dialogs\MainDlg.cpp" />
     <ClCompile Include="exceptions\SysException.cpp" />
+    <ClCompile Include="scheduling\CloseSessionTask.cpp" />
+    <ClCompile Include="scheduling\DownloadTask.cpp" />
+    <ClCompile Include="scheduling\OpenSessionTask.cpp" />
+    <ClCompile Include="scheduling\PreviewTask.cpp" />
+    <ClCompile Include="scheduling\TakePictureTask.cpp" />
     <ClCompile Include="scheduling\TaskRunner.cpp" />
+    <ClCompile Include="wrappers\CallbackHandler.cpp" />
     <ClCompile Include="wrappers\Camera.cpp" />
     <ClCompile Include="wrappers\CameraManager.cpp" />
     <ClCompile Include="wrappers\Image.cpp" />
@@ -158,8 +164,15 @@
     <ClInclude Include="dialogs\MainDlg.h" />
     <ClInclude Include="exceptions\SysException.h" />
     <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="scheduling\CameraTask.h" />
+    <ClInclude Include="scheduling\CloseSessionTask.h" />
+    <ClInclude Include="scheduling\DownloadTask.h" />
+    <ClInclude Include="scheduling\OpenSessionTask.h" />
+    <ClInclude Include="scheduling\PreviewTask.h" />
+    <ClInclude Include="scheduling\TakePictureTask.h" />
     <ClInclude Include="scheduling\Task.h" />
     <ClInclude Include="scheduling\TaskRunner.h" />
+    <ClInclude Include="wrappers\CallbackHandler.h" />
     <ClInclude Include="wrappers\Camera.h" />
     <ClInclude Include="wrappers\CameraManager.h" />
     <ClInclude Include="wrappers\Image.h" />
@@ -168,6 +181,7 @@
     <ClInclude Include="exceptions\MyException.h" />
     <ClInclude Include="FreeMoteDSLR.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="wrappers\StreamWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\FreeMoteDSLR.ico" />

@@ -4,18 +4,19 @@
 #include "./exceptions/SysException.h"
 
 const int TaskRunner::kLoopWaitMilliseconds = 10;
+const int TaskRunner::kDefaultQueueSize = 20;
 
 TaskRunner::TaskRunner(int queueLength)
 	:queue_length_(queueLength), worker_queue_index_(0), producer_queue_index_(0)
 {
 	tasks_queue_ = new Task*[queue_length_];
 	memset(tasks_queue_, NULL, sizeof(int) * queue_length_);
-	worker_thread_ = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)TaskRunner::workerProcess, this, 0, NULL);
-	if (NULL == worker_thread_)
-		throw new SysException("Unable to create a new thread");
 	stop_event_ = CreateEvent(NULL, true, false, _T("stopEvent"));
 	if (NULL == stop_event_)
 		throw new SysException("Unable to create a new event");
+	worker_thread_ = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)TaskRunner::workerProcess, this, 0, NULL);
+	if (NULL == worker_thread_)
+		throw new SysException("Unable to create a new thread");
 }
 
 TaskRunner::~TaskRunner(void)
@@ -25,6 +26,7 @@ TaskRunner::~TaskRunner(void)
 	CloseHandle(stop_event_);
 }
 
+// The task will be deleted by the TaskRunner when it is processed
 bool TaskRunner::InsertTask(Task* task)
 {
 	Task* initialValue = (Task*)InterlockedCompareExchangePointer((PVOID*)(tasks_queue_ + producer_queue_index_), task, NULL);

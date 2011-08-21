@@ -9,16 +9,19 @@ class TaskRunner
 {
 public:
 	// Initializes the task runner and starts it
-	TaskRunner(int queueLength);
+	TaskRunner(int queueLength = kDefaultQueueSize);
 	~TaskRunner(void);
 	// Inserts a new task in the queue,
 	// Returns false if the queue is full
 	bool InsertTask(Task* task);
 	// Stops the worker thread and joins it
 	void StopAndWait();
-private:
 	// Milliseconds to "sleep" between two queue checks (for the worker)
 	static const int kLoopWaitMilliseconds;
+private:
+	// Default queue size
+	static const int kDefaultQueueSize;
+
 	// The worker thread loop
 	static LRESULT workerProcess(LPVOID param);
 

@@ -11,10 +11,7 @@ public:
 	~Camera(void);
 	// Gets the name of the camera
 	CString* GetProductName();
-	// Takes a picture with the current camera and
-	// returns an in-memory picture
-	Image* TakePicture();
+	EdsCameraRef GetInnerCamera() { return inner_camera_; };
 private:
 	EdsCameraRef inner_camera_;
-	//EdsError EDSCALLBACK handleObjectEvent(EdsObjectEvent event, EdsBaseRef object, EdsVoid* context);
 };

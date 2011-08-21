@@ -53,6 +53,24 @@
     <ClCompile Include="exceptions\SysException.cpp">
       <Filter>exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="scheduling\OpenSessionTask.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
+    <ClCompile Include="wrappers\CallbackHandler.cpp">
+      <Filter>wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduling\TakePictureTask.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduling\DownloadTask.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduling\CloseSessionTask.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduling\PreviewTask.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dialogs\AboutDlg.h">
@@ -92,6 +110,30 @@
     </ClInclude>
     <ClInclude Include="exceptions\SysException.h">
       <Filter>exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\OpenSessionTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="wrappers\CallbackHandler.h">
+      <Filter>wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\TakePictureTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\CameraTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\DownloadTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\CloseSessionTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\PreviewTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="wrappers\StreamWrapper.h">
+      <Filter>wrappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
