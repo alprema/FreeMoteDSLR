@@ -51,7 +51,7 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 
 
 	CameraManager* manager = new CameraManager();
-	Camera* camera = manager->GetCamera();	
+	Camera* camera = manager->GetCamera();
 
 	int nRet = 1;
 	if (NULL == camera)

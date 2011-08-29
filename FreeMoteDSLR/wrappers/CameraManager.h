@@ -16,5 +16,5 @@ public:
 
 private:
 	// Number of instances of this class
-	static int instances_count_;
+	static bool initialized_;
 };

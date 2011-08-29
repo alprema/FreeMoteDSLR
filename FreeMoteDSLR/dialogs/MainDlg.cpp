@@ -47,7 +47,6 @@ LRESULT CMainDlg::CustomMessagesHandler(UINT uMsg, WPARAM wParam, LPARAM lParam,
 			task_runner_->InsertTask(new PreviewTask((Image*)lParam, preview_bytes_, CMainDlg::kPreviewWidth, CMainDlg::kPreviewHeight, m_hWnd));
 			return TRUE;
 		case WM_PREVIEW_GENERATED:
-			// TODO: Check the memory release
 			Image* downloadedImage = (Image*)lParam;
 			delete(downloadedImage);
 			// Only refresh if the preview was a success
@@ -108,7 +107,7 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	RGBQUAD quad = { 0, 0, 0, 0 };
 	bitmapInfo.bmiColors[0] = quad;
 	preview_bitmap_ = CreateDIBSection(NULL, (const BITMAPINFO*)&bitmapInfo, DIB_RGB_COLORS, (void**) &preview_bytes_, NULL, 0);
-
+	camera_image_.SetBitmap(preview_bitmap_);
 	return TRUE;
 }
 
@@ -138,9 +137,8 @@ LRESULT CMainDlg::OnCancel(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOO
 
 void CMainDlg::CloseDialog(int nVal)
 {
-	// TODO: Should it be replaced by a synchronous command?
 	task_runner_->InsertTask(new CloseSessionTask(camera_));
-	// We wait the worker's loop time to give it a change to unpile the task, then wait for it to finish
+	// We wait the worker's loop time to give it a change to unpile the task, then wait for it to finish whatever the result
 	Sleep(TaskRunner::kLoopWaitMilliseconds);
 	task_runner_->StopAndWait();
 	DestroyWindow();
@@ -166,8 +164,6 @@ CMainDlg::~CMainDlg(void)
 
 void CMainDlg::RedrawPreview()
 {
-	// TODO: Check that this line is necessary
-	camera_image_.SetBitmap(preview_bitmap_);
 	camera_image_.RedrawWindow();
 }
 

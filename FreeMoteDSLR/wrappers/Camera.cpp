@@ -20,7 +20,7 @@ Camera::~Camera(void)
 // The caller is in charge of freeing the CString
 CString* Camera::GetProductName()
 {
-	// TODO: Replace the name retrieval method by a Task
+	// TODO: Replace the name retrieval method by a Task (generalize with other properties)
 	EdsError errorCode = EdsOpenSession(inner_camera_);
 	if (EDS_ERR_OK != errorCode)
 		return NULL;

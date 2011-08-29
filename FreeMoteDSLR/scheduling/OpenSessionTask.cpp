@@ -15,13 +15,6 @@ void OpenSessionTask::Process()
 
 	EdsError errorCode = EdsOpenSession(edsCamera);
 	
-	// TODO: Get rid of the UI lock
-	// Locking the UI
-	if (EDS_ERR_OK == errorCode)
-	{
-		errorCode = EdsSendStatusCommand(edsCamera, kEdsCameraStatusCommand_UILock, 0);
-	}
-
 	if (EDS_ERR_OK == errorCode)
 	{
 		// TODO: Change the handler to handle all events (and send them all there)

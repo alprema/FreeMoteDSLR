@@ -4,8 +4,7 @@
 #include "../exceptions/InvalidOperationException.h"
 #include <EDSDK.h>
 
-// TODO: Simplify the singleton pattern
-int CameraManager::instances_count_ = 0;
+bool CameraManager::initialized_ = FALSE;
 
 // Goes through the list of cameras connected to the computer
 // and returns the first one of the list in a wrapper, and
@@ -36,9 +35,9 @@ Camera* CameraManager::GetCamera()
 // Just calls the SDK inner methods for initialization
 CameraManager::CameraManager(void)
 {
-	if (CameraManager::instances_count_ > 0)
+	if (CameraManager::initialized_)
 		throw new InvalidOperationException("Only one class of the manager can exist at a given time");
-	++CameraManager::instances_count_;
+	CameraManager::initialized_ = TRUE;
 	EdsInitializeSDK();
 }
 
@@ -46,5 +45,5 @@ CameraManager::CameraManager(void)
 CameraManager::~CameraManager(void)
 {
 	EdsTerminateSDK();
-	--CameraManager::instances_count_;
+	CameraManager::initialized_ = FALSE;
 }

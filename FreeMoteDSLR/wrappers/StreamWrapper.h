@@ -2,7 +2,6 @@
 #include <EDSDK.h>
 
 // Simple RAII wrapper for EdsStreamRef
-// TODO: Test memory release
 class StreamWrapper
 {
 public:

@@ -25,12 +25,6 @@ void CloseSessionTask::Process()
 		errorCode = EdsSetObjectEventHandler(edsCamera, kEdsObjectEvent_DirItemRequestTransfer, NULL, NULL);
 	}
 
-	// Unlocking UI
-	if (EDS_ERR_OK == errorCode)
-	{
-		errorCode = EdsSendStatusCommand(edsCamera, kEdsCameraStatusCommand_UIUnLock, 0);
-	}
-
 	if (EDS_ERR_OK == errorCode)
 	{
 		errorCode = EdsCloseSession(edsCamera);
