@@ -36,3 +36,5 @@ extern CAppModule _Module;
 #define WM_IMAGE_DOWNLOADED (WM_USER + 1)
 // Message sent by the PreviewTask when it's done
 #define WM_PREVIEW_GENERATED (WM_USER + 2)
+// Message sent by the PropertyRetrieverTask when a property value is retrieved
+#define WM_PROPERTY_CHANGED (WM_USER + 3)

@@ -19,6 +19,9 @@
     <Filter Include="scheduling">
       <UniqueIdentifier>{ffee0248-9cc7-4e24-bdc5-41d331d8bdde}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dialogs\propertyHandlers">
+      <UniqueIdentifier>{1f0693cd-ca48-45ec-a285-68ae29011cb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dialogs\AboutDlg.cpp">
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="scheduling\PreviewTask.cpp">
       <Filter>scheduling</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\propertyHandlers\TitleHandler.cpp">
+      <Filter>dialogs\propertyHandlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +140,15 @@
     </ClInclude>
     <ClInclude Include="wrappers\StreamWrapper.h">
       <Filter>wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\PropertyRetrieverTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\propertyHandlers\PropertyHandler.h">
+      <Filter>dialogs\propertyHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\propertyHandlers\TitleHandler.h">
+      <Filter>dialogs\propertyHandlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

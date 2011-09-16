@@ -9,4 +9,3 @@ public:
 	virtual ~Task(void) {};
 	virtual void Process() = 0;
 };
-

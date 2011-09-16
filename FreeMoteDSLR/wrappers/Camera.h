@@ -9,8 +9,6 @@ class Camera
 public:
 	Camera(EdsCameraRef innerCamera);
 	~Camera(void);
-	// Gets the name of the camera
-	CString* GetProductName();
 	EdsCameraRef GetInnerCamera() { return inner_camera_; };
 private:
 	EdsCameraRef inner_camera_;

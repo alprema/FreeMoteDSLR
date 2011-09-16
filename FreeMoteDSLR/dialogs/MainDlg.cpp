@@ -18,6 +18,8 @@
 #include "../scheduling/CloseSessionTask.h"
 #include "../scheduling/TakePictureTask.h"
 #include "../scheduling/PreviewTask.h"
+#include "../scheduling/PropertyRetrieverTask.h"
+#include "propertyHandlers/TitleHandler.h"
 
 #ifndef __ATLIMAGE_H_
 #define __ATLTYPES_H__	// Use the WTL types
@@ -41,18 +43,26 @@ BOOL CMainDlg::OnIdle()
 LRESULT CMainDlg::CustomMessagesHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& /*bHandled*/)
 {
 	switch(uMsg){
-		case WM_IMAGE_DOWNLOADED:
+		case WM_IMAGE_DOWNLOADED: {
 			// TODO: Store the image object somewhere
 			//image->GetImagePreview(dlg->preview_bytes_, CMainDlg::kPreviewWidth, CMainDlg::kPreviewHeight);
 			task_runner_->InsertTask(new PreviewTask((Image*)lParam, preview_bytes_, CMainDlg::kPreviewWidth, CMainDlg::kPreviewHeight, m_hWnd));
 			return TRUE;
-		case WM_PREVIEW_GENERATED:
+		}
+		case WM_PREVIEW_GENERATED: {
 			Image* downloadedImage = (Image*)lParam;
 			delete(downloadedImage);
 			// Only refresh if the preview was a success
 			if (wParam)
 				RedrawPreview();
 			return TRUE;
+		}
+		case WM_PROPERTY_CHANGED: {
+			PropertyHandler* handler = property_handlers_[wParam];
+			if (NULL != handler)
+				handler->SetValue(lParam);
+			return TRUE;
+		}
 	}
 	return FALSE;
 }
@@ -69,11 +79,9 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	HICON hIconSmall = (HICON)::LoadImage(_Module.GetResourceInstance(), MAKEINTRESOURCE(IDR_MAINFRAME), 
 		IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), LR_DEFAULTCOLOR);
 	SetIcon(hIconSmall, FALSE);
-	// Set the window's title
-	WTL::CString* productName = camera_->GetProductName();
-	SetWindowText((LPCTSTR) ("Connected to: " + *productName));
-	delete(productName);
+
 	camera_image_ = GetDlgItem(IDC_CAMERA_IMAGE);
+	
 	// register object for message filtering and idle updates
 	CMessageLoop* pLoop = _Module.GetMessageLoop();
 	ATLASSERT(pLoop != NULL);
@@ -83,8 +91,11 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	// Worker thread management
 	task_runner_ = new TaskRunner();
 	callback_handler_ = new CallbackHandler(camera_, task_runner_, m_hWnd);
-	//pLoop->AddMessageFilter(custom_message_filter_);
 	task_runner_->InsertTask(new OpenSessionTask(camera_, callback_handler_));
+
+	// Property handling
+	property_handlers_[kEdsPropID_ProductName] = new TitleHandler(this);
+	task_runner_->InsertTask(new PropertyRetrieverTask<char*>(camera_, kEdsPropID_ProductName, m_hWnd));
 
 	UIAddChildWindowContainer(m_hWnd);
 
@@ -160,6 +171,9 @@ CMainDlg::~CMainDlg(void)
 	if (NULL != preview_bitmap_ && NULL != DeleteObject(preview_bitmap_))
 		preview_bitmap_ = NULL;
 	preview_bytes_ = NULL;
+	PropertyHandler* handler = property_handlers_[2];
+	for (auto ite = property_handlers_.begin(); ite != property_handlers_.end(); ++ite)
+		delete(ite->second);
 }
 
 void CMainDlg::RedrawPreview()

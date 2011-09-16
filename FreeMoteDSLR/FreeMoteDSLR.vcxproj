@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="dialogs\AboutDlg.cpp" />
     <ClCompile Include="dialogs\MainDlg.cpp" />
+    <ClCompile Include="dialogs\propertyHandlers\TitleHandler.cpp" />
     <ClCompile Include="exceptions\SysException.cpp" />
     <ClCompile Include="scheduling\CloseSessionTask.cpp" />
     <ClCompile Include="scheduling\DownloadTask.cpp" />
@@ -162,6 +163,8 @@
   <ItemGroup>
     <ClInclude Include="dialogs\AboutDlg.h" />
     <ClInclude Include="dialogs\MainDlg.h" />
+    <ClInclude Include="dialogs\propertyHandlers\PropertyHandler.h" />
+    <ClInclude Include="dialogs\propertyHandlers\TitleHandler.h" />
     <ClInclude Include="exceptions\SysException.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="scheduling\CameraTask.h" />
@@ -169,6 +172,7 @@
     <ClInclude Include="scheduling\DownloadTask.h" />
     <ClInclude Include="scheduling\OpenSessionTask.h" />
     <ClInclude Include="scheduling\PreviewTask.h" />
+    <ClInclude Include="scheduling\PropertyRetrieverTask.h" />
     <ClInclude Include="scheduling\TakePictureTask.h" />
     <ClInclude Include="scheduling\Task.h" />
     <ClInclude Include="scheduling\TaskRunner.h" />

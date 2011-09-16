@@ -8,6 +8,8 @@
 #include "../wrappers/Camera.h"
 #include "../scheduling/TaskRunner.h"
 #include "../wrappers/CallbackHandler.h"
+#include "propertyHandlers/PropertyHandler.h"
+#include <hash_map>
 
 class CMainDlg : public CDialogImpl<CMainDlg>, public CUpdateUI<CMainDlg>,
 		public CMessageFilter, public CIdleHandler
@@ -24,7 +26,7 @@ public:
 	END_UPDATE_UI_MAP()
 
 	BEGIN_MSG_MAP(CMainDlg)
-		MESSAGE_RANGE_HANDLER(WM_IMAGE_DOWNLOADED, WM_PREVIEW_GENERATED, CustomMessagesHandler)
+		MESSAGE_RANGE_HANDLER(WM_IMAGE_DOWNLOADED, WM_PROPERTY_CHANGED, CustomMessagesHandler)
 		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
 		MESSAGE_HANDLER(WM_DESTROY, OnDestroy)
 		COMMAND_ID_HANDLER(ID_APP_ABOUT, OnAppAbout)
@@ -58,6 +60,7 @@ private:
 	static const int kPreviewHeight;
 	TaskRunner* task_runner_;
 	CallbackHandler* callback_handler_;
+	std::hash_map<int, PropertyHandler*> property_handlers_;
 public:
 	LRESULT OnBnClickedTakePicture(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	void RedrawPreview();
