@@ -21,6 +21,12 @@ void OpenSessionTask::Process()
 		errorCode = EdsSetObjectEventHandler(edsCamera, kEdsObjectEvent_DirItemRequestTransfer, CallbackHandler::HandleObjectEvent, callback_handler_);
 	}
 
+	
+	if (EDS_ERR_OK == errorCode)
+	{
+		errorCode = EdsSetPropertyEventHandler(edsCamera, kEdsPropertyEvent_All, CallbackHandler::HandlePropertyEvent, callback_handler_);
+	}
+
 	if (EDS_ERR_OK == errorCode)
 	{
 		EdsUInt32 saveTo = kEdsSaveTo_Host;

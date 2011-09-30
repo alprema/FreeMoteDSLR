@@ -27,6 +27,12 @@ void CloseSessionTask::Process()
 
 	if (EDS_ERR_OK == errorCode)
 	{
+		errorCode = EdsSetPropertyEventHandler(edsCamera, kEdsObjectEvent_All, NULL, NULL);
+	}
+		
+
+	if (EDS_ERR_OK == errorCode)
+	{
 		errorCode = EdsCloseSession(edsCamera);
 	}
 	CoUninitialize();

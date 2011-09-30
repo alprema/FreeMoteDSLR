@@ -139,12 +139,17 @@
   <ItemGroup>
     <ClCompile Include="dialogs\AboutDlg.cpp" />
     <ClCompile Include="dialogs\MainDlg.cpp" />
+    <ClCompile Include="dialogs\propertyHandlers\MultiValuePropertyHandler.cpp" />
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\IsoSpeedMapping.cpp" />
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\TextMapping.cpp" />
     <ClCompile Include="dialogs\propertyHandlers\TitleHandler.cpp" />
     <ClCompile Include="exceptions\SysException.cpp" />
     <ClCompile Include="scheduling\CloseSessionTask.cpp" />
     <ClCompile Include="scheduling\DownloadTask.cpp" />
     <ClCompile Include="scheduling\OpenSessionTask.cpp" />
     <ClCompile Include="scheduling\PreviewTask.cpp" />
+    <ClCompile Include="scheduling\PropertyPossibleValuesRetrieverTask.cpp" />
+    <ClCompile Include="scheduling\PropertyRetrieverTask.cpp" />
     <ClCompile Include="scheduling\TakePictureTask.cpp" />
     <ClCompile Include="scheduling\TaskRunner.cpp" />
     <ClCompile Include="wrappers\CallbackHandler.cpp" />
@@ -163,7 +168,10 @@
   <ItemGroup>
     <ClInclude Include="dialogs\AboutDlg.h" />
     <ClInclude Include="dialogs\MainDlg.h" />
+    <ClInclude Include="dialogs\propertyHandlers\MultiValuePropertyHandler.h" />
     <ClInclude Include="dialogs\propertyHandlers\PropertyHandler.h" />
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\IsoSpeedMapping.h" />
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\TextMapping.h" />
     <ClInclude Include="dialogs\propertyHandlers\TitleHandler.h" />
     <ClInclude Include="exceptions\SysException.h" />
     <ClInclude Include="resources\resource.h" />
@@ -173,6 +181,7 @@
     <ClInclude Include="scheduling\OpenSessionTask.h" />
     <ClInclude Include="scheduling\PreviewTask.h" />
     <ClInclude Include="scheduling\PropertyRetrieverTask.h" />
+    <ClInclude Include="scheduling\PropertyPossibleValuesRetrieverTask.h" />
     <ClInclude Include="scheduling\TakePictureTask.h" />
     <ClInclude Include="scheduling\Task.h" />
     <ClInclude Include="scheduling\TaskRunner.h" />

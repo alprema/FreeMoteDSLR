@@ -22,6 +22,9 @@
     <Filter Include="dialogs\propertyHandlers">
       <UniqueIdentifier>{1f0693cd-ca48-45ec-a285-68ae29011cb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dialogs\propertyHandlers\textMappings">
+      <UniqueIdentifier>{2dead3a8-e519-4d30-af88-7a6afa88f456}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dialogs\AboutDlg.cpp">
@@ -76,6 +79,21 @@
     </ClCompile>
     <ClCompile Include="dialogs\propertyHandlers\TitleHandler.cpp">
       <Filter>dialogs\propertyHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduling\PropertyPossibleValuesRetrieverTask.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\propertyHandlers\MultiValuePropertyHandler.cpp">
+      <Filter>dialogs\propertyHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\IsoSpeedMapping.cpp">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\TextMapping.cpp">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduling\PropertyRetrieverTask.cpp">
+      <Filter>scheduling</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +167,18 @@
     </ClInclude>
     <ClInclude Include="dialogs\propertyHandlers\TitleHandler.h">
       <Filter>dialogs\propertyHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\PropertyPossibleValuesRetrieverTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\propertyHandlers\MultiValuePropertyHandler.h">
+      <Filter>dialogs\propertyHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\IsoSpeedMapping.h">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\TextMapping.h">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

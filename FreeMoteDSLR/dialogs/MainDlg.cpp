@@ -19,7 +19,10 @@
 #include "../scheduling/TakePictureTask.h"
 #include "../scheduling/PreviewTask.h"
 #include "../scheduling/PropertyRetrieverTask.h"
+#include "../scheduling/PropertyPossibleValuesRetrieverTask.h"
 #include "propertyHandlers/TitleHandler.h"
+#include "propertyHandlers/MultiValuePropertyHandler.h"
+#include "propertyHandlers/textMappings/IsoSpeedMapping.h"
 
 #ifndef __ATLIMAGE_H_
 #define __ATLTYPES_H__	// Use the WTL types
@@ -45,7 +48,6 @@ LRESULT CMainDlg::CustomMessagesHandler(UINT uMsg, WPARAM wParam, LPARAM lParam,
 	switch(uMsg){
 		case WM_IMAGE_DOWNLOADED: {
 			// TODO: Store the image object somewhere
-			//image->GetImagePreview(dlg->preview_bytes_, CMainDlg::kPreviewWidth, CMainDlg::kPreviewHeight);
 			task_runner_->InsertTask(new PreviewTask((Image*)lParam, preview_bytes_, CMainDlg::kPreviewWidth, CMainDlg::kPreviewHeight, m_hWnd));
 			return TRUE;
 		}
@@ -61,6 +63,15 @@ LRESULT CMainDlg::CustomMessagesHandler(UINT uMsg, WPARAM wParam, LPARAM lParam,
 			PropertyHandler* handler = property_handlers_[wParam];
 			if (NULL != handler)
 				handler->SetValue(lParam);
+			return TRUE;
+		}
+		case WM_PROPERTY_POSSIBLE_VALUES_CHANGED: {
+			PropertyHandler* handler = property_handlers_[wParam];
+			if (NULL != handler) {
+				// Setting the possible values in the combo and asking for a refresh of the selected value to select the right one
+				handler->SetPossibleValues(lParam);
+				task_runner_->InsertTask(new PropertyRetrieverTask<int>(camera_, wParam, m_hWnd));
+			}
 			return TRUE;
 		}
 	}
@@ -94,6 +105,9 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	task_runner_->InsertTask(new OpenSessionTask(camera_, callback_handler_));
 
 	// Property handling
+	// Remember to handle the property change / desc change in the HandleObjectEvent when adding one here
+	property_handlers_[kEdsPropID_ISOSpeed] = new MultiValuePropertyHandler((CComboBox)GetDlgItem(IDC_ISO_COMBO), new IsoSpeedMapping());
+	task_runner_->InsertTask(new PropertyPossibleValuesRetrieverTask(camera_, kEdsPropID_ISOSpeed, m_hWnd));
 	property_handlers_[kEdsPropID_ProductName] = new TitleHandler(this);
 	task_runner_->InsertTask(new PropertyRetrieverTask<char*>(camera_, kEdsPropID_ProductName, m_hWnd));
 
@@ -171,7 +185,6 @@ CMainDlg::~CMainDlg(void)
 	if (NULL != preview_bitmap_ && NULL != DeleteObject(preview_bitmap_))
 		preview_bitmap_ = NULL;
 	preview_bytes_ = NULL;
-	PropertyHandler* handler = property_handlers_[2];
 	for (auto ite = property_handlers_.begin(); ite != property_handlers_.end(); ++ite)
 		delete(ite->second);
 }

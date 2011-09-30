@@ -38,3 +38,5 @@ extern CAppModule _Module;
 #define WM_PREVIEW_GENERATED (WM_USER + 2)
 // Message sent by the PropertyRetrieverTask when a property value is retrieved
 #define WM_PROPERTY_CHANGED (WM_USER + 3)
+// Message sent by the PropertyPossibleValuesRetrieverTask when the possible values for a property changed
+#define WM_PROPERTY_POSSIBLE_VALUES_CHANGED (WM_USER + 4)

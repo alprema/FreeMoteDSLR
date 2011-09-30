@@ -1,13 +1,13 @@
 #pragma once
-#include "stdafx.h"
 
 // Class in charge of handling a camera property 
 // and binding it to a UI component
-// The property handlers are in charge of freeing the values
-// passed to it
 class PropertyHandler
 {
 public:
 	virtual ~PropertyHandler(void) {};
+	// The property handler is in charge of deleting the values container
+	virtual void SetPossibleValues(LPARAM value) {};
+	// The property handler is in charge of deleting the value object
 	virtual void SetValue(LPARAM value) = 0;
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "CameraTask.h"
 
+// Class in charge of retrieving the value of a given property
 template <class TProperty>
 class PropertyRetrieverTask: public CameraTask
 {
@@ -23,16 +24,9 @@ void PropertyRetrieverTask<TProperty>::Process()
 {
 	TProperty* value = new TProperty;
 	EdsError err = EdsGetPropertyData(camera_->GetInnerCamera(), camera_property_, 0, sizeof(TProperty), value);
-	PostMessage(complete_message_destination_, WM_PROPERTY_CHANGED, camera_property_, (LPARAM)value);
+	if (EDS_ERR_OK == err)
+		PostMessage(complete_message_destination_, WM_PROPERTY_CHANGED, camera_property_, (LPARAM)value);
 }
 
 template <>
-void PropertyRetrieverTask<char*>::Process()
-{
-	EdsDataType dataType;
-	EdsUInt32 outSize;
-	EdsError err = EdsGetPropertySize(camera_->GetInnerCamera(), camera_property_, 0, &dataType, &outSize);
-	char* name = new char[outSize];
-	err = EdsGetPropertyData(camera_->GetInnerCamera(), camera_property_, 0, sizeof(char) * outSize, name);
-	PostMessage(complete_message_destination_, WM_PROPERTY_CHANGED, camera_property_, (LPARAM)name);
-}
+void PropertyRetrieverTask<char*>::Process();

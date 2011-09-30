@@ -10,5 +10,5 @@ TakePictureTask::TakePictureTask(Camera* camera)
 
 void TakePictureTask::Process()
 {
-	EdsError errorCode = EdsSendCommand(camera_->GetInnerCamera(), kEdsCameraCommand_TakePicture, 0);
+	EdsSendCommand(camera_->GetInnerCamera(), kEdsCameraCommand_TakePicture, 0);
 }
