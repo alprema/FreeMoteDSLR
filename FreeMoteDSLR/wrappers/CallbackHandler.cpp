@@ -25,7 +25,6 @@ EdsError EDSCALLBACK CallbackHandler::HandleObjectEvent(EdsObjectEvent event, Ed
 	return EDS_ERR_OK;
 }
 
-// TODO: There is a leak in the properties retrieval system
 // An instance of a CallbackHandler shall be passed in context
 EdsError EDSCALLBACK CallbackHandler::HandlePropertyEvent(EdsPropertyEvent event, EdsPropertyID cameraProperty, EdsUInt32 inParam, EdsVoid* context)
 {

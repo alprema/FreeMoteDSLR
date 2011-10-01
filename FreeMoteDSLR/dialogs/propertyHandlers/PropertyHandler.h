@@ -1,5 +1,6 @@
 #pragma once
 
+// TODO: Comment more the entire solution
 // Class in charge of handling a camera property 
 // and binding it to a UI component
 class PropertyHandler

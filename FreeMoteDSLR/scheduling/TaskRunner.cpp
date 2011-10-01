@@ -26,7 +26,7 @@ TaskRunner::~TaskRunner(void)
 	CloseHandle(stop_event_);
 }
 
-// The task will be deleted by the TaskRunner when it is processed
+// The task is deleted by the TaskRunner wheter it's processed or not (to prevent leaks)
 bool TaskRunner::InsertTask(Task* task)
 {
 	Task* initialValue = (Task*)InterlockedCompareExchangePointer((PVOID*)(tasks_queue_ + producer_queue_index_), task, NULL);
@@ -35,6 +35,7 @@ bool TaskRunner::InsertTask(Task* task)
 		producer_queue_index_ = (producer_queue_index_ + 1) % queue_length_;
 		return true;
 	}
+	delete(task);
 	return false;
 
 }

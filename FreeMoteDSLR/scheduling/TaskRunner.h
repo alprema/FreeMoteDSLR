@@ -12,7 +12,7 @@ public:
 	TaskRunner(int queueLength = kDefaultQueueSize);
 	~TaskRunner(void);
 	// Inserts a new task in the queue,
-	// Returns false if the queue is full
+	// Returns false if the queue is full (the Task is then deleted immediatly)
 	bool InsertTask(Task* task);
 	// Stops the worker thread and joins it
 	void StopAndWait();
