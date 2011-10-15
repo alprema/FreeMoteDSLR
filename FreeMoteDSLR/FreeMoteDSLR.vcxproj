@@ -182,6 +182,7 @@
     <ClInclude Include="scheduling\PreviewTask.h" />
     <ClInclude Include="scheduling\PropertyRetrieverTask.h" />
     <ClInclude Include="scheduling\PropertyPossibleValuesRetrieverTask.h" />
+    <ClInclude Include="scheduling\PropertySetterTask.h" />
     <ClInclude Include="scheduling\TakePictureTask.h" />
     <ClInclude Include="scheduling\Task.h" />
     <ClInclude Include="scheduling\TaskRunner.h" />

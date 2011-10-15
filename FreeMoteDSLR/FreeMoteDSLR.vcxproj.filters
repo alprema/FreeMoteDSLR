@@ -180,6 +180,9 @@
     <ClInclude Include="dialogs\propertyHandlers\textMappings\TextMapping.h">
       <Filter>dialogs\propertyHandlers\textMappings</Filter>
     </ClInclude>
+    <ClInclude Include="scheduling\PropertySetterTask.h">
+      <Filter>scheduling</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\FreeMoteDSLR.ico">

@@ -4,7 +4,7 @@
 #include "./exceptions/SysException.h"
 
 const int TaskRunner::kLoopWaitMilliseconds = 10;
-const int TaskRunner::kDefaultQueueSize = 20;
+const int TaskRunner::kDefaultQueueSize = 50;
 
 TaskRunner::TaskRunner(int queueLength)
 	:queue_length_(queueLength), worker_queue_index_(0), producer_queue_index_(0)

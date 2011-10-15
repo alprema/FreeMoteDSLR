@@ -32,6 +32,7 @@ public:
 		COMMAND_ID_HANDLER(ID_APP_ABOUT, OnAppAbout)
 		COMMAND_ID_HANDLER(IDCANCEL, OnCancel)
 		COMMAND_HANDLER(ID_TAKE_PICTURE, BN_CLICKED, OnBnClickedTakePicture)
+		COMMAND_HANDLER(IDC_ISO_COMBO, CBN_SELCHANGE, OnSettingsComboSelchange)
 	END_MSG_MAP()
 
 // Handler prototypes (uncomment arguments if needed):
@@ -61,7 +62,9 @@ private:
 	TaskRunner* task_runner_;
 	CallbackHandler* callback_handler_;
 	std::hash_map<int, PropertyHandler*> property_handlers_;
+	std::hash_map<int, int> combobox_to_camera_property_;
 public:
 	LRESULT OnBnClickedTakePicture(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	void RedrawPreview();
+	LRESULT OnSettingsComboSelchange(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 };

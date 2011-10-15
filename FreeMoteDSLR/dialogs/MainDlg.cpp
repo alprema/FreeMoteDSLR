@@ -20,6 +20,7 @@
 #include "../scheduling/PreviewTask.h"
 #include "../scheduling/PropertyRetrieverTask.h"
 #include "../scheduling/PropertyPossibleValuesRetrieverTask.h"
+#include "../scheduling/PropertySetterTask.h"
 #include "propertyHandlers/TitleHandler.h"
 #include "propertyHandlers/MultiValuePropertyHandler.h"
 #include "propertyHandlers/textMappings/IsoSpeedMapping.h"
@@ -107,6 +108,7 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	// Property handling
 	// Remember to handle the property change / desc change in the HandleObjectEvent when adding one here
 	property_handlers_[kEdsPropID_ISOSpeed] = new MultiValuePropertyHandler((CComboBox)GetDlgItem(IDC_ISO_COMBO), new IsoSpeedMapping());
+	combobox_to_camera_property_[IDC_ISO_COMBO] = kEdsPropID_ISOSpeed;
 	task_runner_->InsertTask(new PropertyPossibleValuesRetrieverTask(camera_, kEdsPropID_ISOSpeed, m_hWnd));
 	property_handlers_[kEdsPropID_ProductName] = new TitleHandler(this);
 	task_runner_->InsertTask(new PropertyRetrieverTask<char*>(camera_, kEdsPropID_ProductName, m_hWnd));
@@ -197,5 +199,13 @@ void CMainDlg::RedrawPreview()
 LRESULT CMainDlg::OnBnClickedTakePicture(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
 	task_runner_->InsertTask(new TakePictureTask(camera_));
+	return 0;
+}
+
+LRESULT CMainDlg::OnSettingsComboSelchange(WORD /*wNotifyCode*/, WORD wID, HWND hWndCtl, BOOL& /*bHandled*/)
+{
+	int cameraProperty = combobox_to_camera_property_[wID];
+	CComboBox combobox(hWndCtl);
+	task_runner_->InsertTask(new PropertySetterTask<int>(camera_, cameraProperty, combobox.GetItemData(combobox.GetCurSel())));
 	return 0;
 }
