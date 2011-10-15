@@ -95,6 +95,12 @@
     <ClCompile Include="scheduling\PropertyRetrieverTask.cpp">
       <Filter>scheduling</Filter>
     </ClCompile>
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\ApertureMapping.cpp">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\SpeedMapping.cpp">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dialogs\AboutDlg.h">
@@ -182,6 +188,12 @@
     </ClInclude>
     <ClInclude Include="scheduling\PropertySetterTask.h">
       <Filter>scheduling</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\ApertureMapping.h">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\SpeedMapping.h">
+      <Filter>dialogs\propertyHandlers\textMappings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,8 @@
 #include "propertyHandlers/TitleHandler.h"
 #include "propertyHandlers/MultiValuePropertyHandler.h"
 #include "propertyHandlers/textMappings/IsoSpeedMapping.h"
+#include "propertyHandlers/textMappings/ApertureMapping.h"
+#include "propertyHandlers/textMappings/SpeedMapping.h"
 
 #ifndef __ATLIMAGE_H_
 #define __ATLTYPES_H__	// Use the WTL types
@@ -107,9 +109,19 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 
 	// Property handling
 	// Remember to handle the property change / desc change in the HandleObjectEvent when adding one here
+	// ISO Speed
 	property_handlers_[kEdsPropID_ISOSpeed] = new MultiValuePropertyHandler((CComboBox)GetDlgItem(IDC_ISO_COMBO), new IsoSpeedMapping());
 	combobox_to_camera_property_[IDC_ISO_COMBO] = kEdsPropID_ISOSpeed;
 	task_runner_->InsertTask(new PropertyPossibleValuesRetrieverTask(camera_, kEdsPropID_ISOSpeed, m_hWnd));
+	// Aperture
+	property_handlers_[kEdsPropID_Av] = new MultiValuePropertyHandler((CComboBox)GetDlgItem(IDC_APERTURE_COMBO), new ApertureMapping());
+	combobox_to_camera_property_[IDC_APERTURE_COMBO] = kEdsPropID_Av;
+	task_runner_->InsertTask(new PropertyPossibleValuesRetrieverTask(camera_, kEdsPropID_Av, m_hWnd));
+	// Speed
+	property_handlers_[kEdsPropID_Tv] = new MultiValuePropertyHandler((CComboBox)GetDlgItem(IDC_SPEED_COMBO), new SpeedMapping());
+	combobox_to_camera_property_[IDC_SPEED_COMBO] = kEdsPropID_Tv;
+	task_runner_->InsertTask(new PropertyPossibleValuesRetrieverTask(camera_, kEdsPropID_Tv, m_hWnd));
+	// Title
 	property_handlers_[kEdsPropID_ProductName] = new TitleHandler(this);
 	task_runner_->InsertTask(new PropertyRetrieverTask<char*>(camera_, kEdsPropID_ProductName, m_hWnd));
 

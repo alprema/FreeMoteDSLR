@@ -32,12 +32,12 @@ EdsError EDSCALLBACK CallbackHandler::HandlePropertyEvent(EdsPropertyEvent event
 	CallbackHandler* that = (CallbackHandler*)context;
 	switch (event) {
 		case kEdsPropertyEvent_PropertyChanged: {
-			if (cameraProperty != kEdsPropID_ISOSpeed)
+			if (cameraProperty != kEdsPropID_ISOSpeed && cameraProperty != kEdsPropID_Av && cameraProperty != kEdsPropID_Tv)
 				break;
 			that->task_runner_->InsertTask(new PropertyRetrieverTask<int>(that->camera_, cameraProperty, that->complete_message_destination_));
 		}
 		case kEdsPropertyEvent_PropertyDescChanged: {
-			if (cameraProperty != kEdsPropID_ISOSpeed)
+			if (cameraProperty != kEdsPropID_ISOSpeed && cameraProperty != kEdsPropID_Av && cameraProperty != kEdsPropID_Tv)
 				break;
 			that->task_runner_->InsertTask(new PropertyPossibleValuesRetrieverTask(that->camera_, cameraProperty, that->complete_message_destination_));
 		}

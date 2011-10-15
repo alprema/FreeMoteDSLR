@@ -1,0 +1,82 @@
+#include "stdafx.h"
+#include "SpeedMapping.h"
+
+
+SpeedMapping::SpeedMapping(void)
+{
+	(*this)[0x0C] = new CString("Bulb");
+	(*this)[0x10] = new CString("30\"");
+	(*this)[0x13] = new CString("25\"");
+	(*this)[0x14] = new CString("20\"");
+	(*this)[0x15] = new CString("20\" (1/3)");
+	(*this)[0x18] = new CString("15\"");
+	(*this)[0x1B] = new CString("12\"");
+	(*this)[0x1C] = new CString("10\"");
+	(*this)[0x1D] = new CString("10\" (1/3)");
+	(*this)[0x20] = new CString("8\"");
+	(*this)[0x23] = new CString("6\" (1/3)");
+	(*this)[0x24] = new CString("6\"");
+	(*this)[0x25] = new CString("5\"");
+	(*this)[0x28] = new CString("4\"");
+	(*this)[0x2B] = new CString("3\"2");
+	(*this)[0x2C] = new CString("3\"");
+	(*this)[0x2D] = new CString("2\"5");
+	(*this)[0x30] = new CString("2\"");
+	(*this)[0x33] = new CString("1\"6");
+	(*this)[0x34] = new CString("1\"5");
+	(*this)[0x35] = new CString("1\"3");
+	(*this)[0x38] = new CString("1\"");
+	(*this)[0x3B] = new CString("0\"8");
+	(*this)[0x3C] = new CString("0\"7");
+	(*this)[0x3D] = new CString("0\"6");
+	(*this)[0x40] = new CString("0\"5");
+	(*this)[0x43] = new CString("0\"4");
+	(*this)[0x44] = new CString("0\"3");
+	(*this)[0x45] = new CString("0\"3 (1/3)");
+	(*this)[0x48] = new CString("1/4");
+	(*this)[0x4B] = new CString("1/5");
+	(*this)[0x4C] = new CString("1/6");
+	(*this)[0x4D] = new CString("1/6 (1/3)");
+	(*this)[0x50] = new CString("1/8");
+	(*this)[0x53] = new CString("1/10 (1/3)");
+	(*this)[0x54] = new CString("1/10");
+	(*this)[0x55] = new CString("1/13");
+	(*this)[0x58] = new CString("1/15");
+	(*this)[0x5B] = new CString("1/20 (1/3)");
+	(*this)[0x5C] = new CString("1/20");
+	(*this)[0x5D] = new CString("1/25");
+	(*this)[0x60] = new CString("1/30");
+	(*this)[0x63] = new CString("1/40");
+	(*this)[0x64] = new CString("1/45");
+	(*this)[0x65] = new CString("1/50");
+	(*this)[0x68] = new CString("1/60");
+	(*this)[0x6B] = new CString("1/80");
+	(*this)[0x6C] = new CString("1/90");
+	(*this)[0x6D] = new CString("1/100");
+	(*this)[0x70] = new CString("1/125");
+	(*this)[0x73] = new CString("1/160");
+	(*this)[0x74] = new CString("1/180");
+	(*this)[0x75] = new CString("1/200");
+	(*this)[0x78] = new CString("1/250");
+	(*this)[0x7B] = new CString("1/320");
+	(*this)[0x7C] = new CString("1/350");
+	(*this)[0x7D] = new CString("1/400");
+	(*this)[0x80] = new CString("1/500");
+	(*this)[0x83] = new CString("1/640");
+	(*this)[0x84] = new CString("1/750");
+	(*this)[0x85] = new CString("1/800");
+	(*this)[0x88] = new CString("1/1000");
+	(*this)[0x8B] = new CString("1/1250");
+	(*this)[0x8C] = new CString("1/1500");
+	(*this)[0x8D] = new CString("1/1600");
+	(*this)[0x90] = new CString("1/2000");
+	(*this)[0x93] = new CString("1/2500");
+	(*this)[0x94] = new CString("1/3000");
+	(*this)[0x95] = new CString("1/3200");
+	(*this)[0x98] = new CString("1/4000");
+	(*this)[0x9B] = new CString("1/5000");
+	(*this)[0x9C] = new CString("1/6000");
+	(*this)[0x9D] = new CString("1/6400");
+	(*this)[0xA0] = new CString("1/8000");
+	(*this)[0xffffffff] = new CString("INVALID");
+}

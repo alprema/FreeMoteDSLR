@@ -140,7 +140,9 @@
     <ClCompile Include="dialogs\AboutDlg.cpp" />
     <ClCompile Include="dialogs\MainDlg.cpp" />
     <ClCompile Include="dialogs\propertyHandlers\MultiValuePropertyHandler.cpp" />
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\ApertureMapping.cpp" />
     <ClCompile Include="dialogs\propertyHandlers\textMappings\IsoSpeedMapping.cpp" />
+    <ClCompile Include="dialogs\propertyHandlers\textMappings\SpeedMapping.cpp" />
     <ClCompile Include="dialogs\propertyHandlers\textMappings\TextMapping.cpp" />
     <ClCompile Include="dialogs\propertyHandlers\TitleHandler.cpp" />
     <ClCompile Include="exceptions\SysException.cpp" />
@@ -170,7 +172,9 @@
     <ClInclude Include="dialogs\MainDlg.h" />
     <ClInclude Include="dialogs\propertyHandlers\MultiValuePropertyHandler.h" />
     <ClInclude Include="dialogs\propertyHandlers\PropertyHandler.h" />
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\ApertureMapping.h" />
     <ClInclude Include="dialogs\propertyHandlers\textMappings\IsoSpeedMapping.h" />
+    <ClInclude Include="dialogs\propertyHandlers\textMappings\SpeedMapping.h" />
     <ClInclude Include="dialogs\propertyHandlers\textMappings\TextMapping.h" />
     <ClInclude Include="dialogs\propertyHandlers\TitleHandler.h" />
     <ClInclude Include="exceptions\SysException.h" />

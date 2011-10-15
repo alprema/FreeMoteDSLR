@@ -33,6 +33,8 @@ public:
 		COMMAND_ID_HANDLER(IDCANCEL, OnCancel)
 		COMMAND_HANDLER(ID_TAKE_PICTURE, BN_CLICKED, OnBnClickedTakePicture)
 		COMMAND_HANDLER(IDC_ISO_COMBO, CBN_SELCHANGE, OnSettingsComboSelchange)
+		COMMAND_HANDLER(IDC_APERTURE_COMBO, CBN_SELCHANGE, OnSettingsComboSelchange)
+		COMMAND_HANDLER(IDC_SPEED_COMBO, CBN_SELCHANGE, OnSettingsComboSelchange)
 	END_MSG_MAP()
 
 // Handler prototypes (uncomment arguments if needed):
