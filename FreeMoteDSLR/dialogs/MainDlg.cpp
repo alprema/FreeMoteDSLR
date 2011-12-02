@@ -147,6 +147,9 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	bitmapInfo.bmiColors[0] = quad;
 	preview_bitmap_ = CreateDIBSection(NULL, (const BITMAPINFO*)&bitmapInfo, DIB_RGB_COLORS, (void**) &preview_bytes_, NULL, 0);
 	camera_image_.SetBitmap(preview_bitmap_);
+
+	// Browse dialog
+	open_folder_dialog_ = new CFolderDialog(m_hWnd, _T("Pick the destination folder"));
 	return TRUE;
 }
 
@@ -196,6 +199,7 @@ CMainDlg::~CMainDlg(void)
 	delete(callback_handler_);
 	delete(task_runner_);
 	delete(camera_);
+	delete(open_folder_dialog_);
 	if (NULL != preview_bitmap_ && NULL != DeleteObject(preview_bitmap_))
 		preview_bitmap_ = NULL;
 	preview_bytes_ = NULL;
@@ -219,5 +223,27 @@ LRESULT CMainDlg::OnSettingsComboSelchange(WORD /*wNotifyCode*/, WORD wID, HWND 
 	int cameraProperty = combobox_to_camera_property_[wID];
 	CComboBox combobox(hWndCtl);
 	task_runner_->InsertTask(new PropertySetterTask<int>(camera_, cameraProperty, combobox.GetItemData(combobox.GetCurSel())));
+	return 0;
+}
+
+
+LRESULT CMainDlg::OnEnableSaveCheckboxClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
+	CButton enableSaveCheckBox = (CButton)GetDlgItem(IDC_ENABLE_SAVE_CHECKBOX);
+	CEdit targetEdit = (CEdit)GetDlgItem(IDC_TARGET_EDIT);
+	CButton browseButton = (CButton)GetDlgItem(IDC_BROWSE_BUTTON);
+	
+	targetEdit.EnableWindow(enableSaveCheckBox.GetCheck());
+	browseButton.EnableWindow(enableSaveCheckBox.GetCheck());
+	return 0;
+}
+
+
+LRESULT CMainDlg::OnBrowseButtonClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
+	open_folder_dialog_->DoModal(m_hWnd);
+	CEdit targetEdit = (CEdit)GetDlgItem(IDC_TARGET_EDIT);
+	targetEdit.SetSelAll();
+	targetEdit.SetWindowTextW(open_folder_dialog_->GetFolderPath());
 	return 0;
 }
