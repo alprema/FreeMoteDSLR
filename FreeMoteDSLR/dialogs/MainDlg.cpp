@@ -32,8 +32,10 @@
 #include <atlimage.h>
 #endif
 
+// TODO: Are there other image ratios than 1.5 in the EOS family?
 const int CMainDlg::kPreviewWidth = 800;
 const int CMainDlg::kPreviewHeight = 533; // Make sure to keep 1.5 ratio
+const int CMainDlg::kMaxTargetPathLength = 255;
 
 BOOL CMainDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -50,7 +52,6 @@ LRESULT CMainDlg::CustomMessagesHandler(UINT uMsg, WPARAM wParam, LPARAM lParam,
 {
 	switch(uMsg){
 		case WM_IMAGE_DOWNLOADED: {
-			// TODO: Store the image object somewhere
 			task_runner_->InsertTask(new PreviewTask((Image*)lParam, preview_bytes_, CMainDlg::kPreviewWidth, CMainDlg::kPreviewHeight, m_hWnd));
 			return TRUE;
 		}
@@ -233,17 +234,35 @@ LRESULT CMainDlg::OnEnableSaveCheckboxClicked(WORD /*wNotifyCode*/, WORD /*wID*/
 	CEdit targetEdit = (CEdit)GetDlgItem(IDC_TARGET_EDIT);
 	CButton browseButton = (CButton)GetDlgItem(IDC_BROWSE_BUTTON);
 	
-	targetEdit.EnableWindow(enableSaveCheckBox.GetCheck());
-	browseButton.EnableWindow(enableSaveCheckBox.GetCheck());
+	bool isChecked = enableSaveCheckBox.GetCheck();
+	targetEdit.EnableWindow(isChecked);
+	browseButton.EnableWindow(isChecked);
+	if (isChecked)
+	{
+		selectPath();
+	} else {
+		callback_handler_->SetDownloadTarget(NULL);
+	}
 	return 0;
 }
-
 
 LRESULT CMainDlg::OnBrowseButtonClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
 	open_folder_dialog_->DoModal(m_hWnd);
 	CEdit targetEdit = (CEdit)GetDlgItem(IDC_TARGET_EDIT);
-	targetEdit.SetSelAll();
-	targetEdit.SetWindowTextW(open_folder_dialog_->GetFolderPath());
+	targetEdit.SetWindowText(open_folder_dialog_->GetFolderPath());
+	selectPath();	
 	return 0;
+}
+
+void CMainDlg::selectPath()
+{
+	CEdit targetEdit = (CEdit)GetDlgItem(IDC_TARGET_EDIT);
+	TCHAR returnedPath[CMainDlg::kMaxTargetPathLength];
+	int pathLength = targetEdit.GetWindowText(returnedPath, CMainDlg::kMaxTargetPathLength);
+	if (0 == pathLength)
+	{
+		return;
+	}
+	callback_handler_->SetDownloadTarget(new WTL::CString(returnedPath));
 }

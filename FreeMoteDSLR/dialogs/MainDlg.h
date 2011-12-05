@@ -56,6 +56,8 @@ public:
 private:
 	Camera* camera_;
 	static LRESULT CMainDlg::takePictureAsync(LPVOID param);
+	// Selects the path in the path box as the "target path" after verification
+	void selectPath();
 	CStatic camera_image_;
 	CFolderDialog* open_folder_dialog_;
 	// The bitmap handle to the preview
@@ -64,6 +66,7 @@ private:
 	BYTE* preview_bytes_;
 	static const int kPreviewWidth;
 	static const int kPreviewHeight;
+	static const int kMaxTargetPathLength;
 	TaskRunner* task_runner_;
 	CallbackHandler* callback_handler_;
 	std::hash_map<int, PropertyHandler*> property_handlers_;
