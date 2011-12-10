@@ -101,6 +101,9 @@
     <ClCompile Include="dialogs\propertyHandlers\textMappings\SpeedMapping.cpp">
       <Filter>dialogs\propertyHandlers\textMappings</Filter>
     </ClCompile>
+    <ClCompile Include="scheduling\TimeLapser.cpp">
+      <Filter>scheduling</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dialogs\AboutDlg.h">
@@ -194,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="dialogs\propertyHandlers\textMappings\SpeedMapping.h">
       <Filter>dialogs\propertyHandlers\textMappings</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling\TimeLapser.h">
+      <Filter>scheduling</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

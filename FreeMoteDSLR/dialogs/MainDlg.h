@@ -7,6 +7,7 @@
 #include "../resources/resource.h"
 #include "../wrappers/Camera.h"
 #include "../scheduling/TaskRunner.h"
+#include "../scheduling/TimeLapser.h"
 #include "../wrappers/CallbackHandler.h"
 #include "propertyHandlers/PropertyHandler.h"
 #include <hash_map>
@@ -69,6 +70,7 @@ private:
 	static const int kMaxTargetPathLength;
 	TaskRunner* task_runner_;
 	CallbackHandler* callback_handler_;
+	TimeLapser* time_lapser_;
 	std::hash_map<int, PropertyHandler*> property_handlers_;
 	std::hash_map<int, int> combobox_to_camera_property_;
 public:

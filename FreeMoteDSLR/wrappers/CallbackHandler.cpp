@@ -33,7 +33,7 @@ EdsError EDSCALLBACK CallbackHandler::HandleObjectEvent(EdsObjectEvent event, Ed
 			return EDS_ERR_OK;
 		}
 	}
-	// object is normally release by the task, but since no task matches this event, we need to delete it here
+	// object is normally released by the task, but since no task matches this event, we need to delete it here
 	if (NULL != object)
 		EdsRelease(object);
 	return EDS_ERR_OK;

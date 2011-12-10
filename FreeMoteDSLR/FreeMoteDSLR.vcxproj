@@ -154,6 +154,7 @@
     <ClCompile Include="scheduling\PropertyRetrieverTask.cpp" />
     <ClCompile Include="scheduling\TakePictureTask.cpp" />
     <ClCompile Include="scheduling\TaskRunner.cpp" />
+    <ClCompile Include="scheduling\TimeLapser.cpp" />
     <ClCompile Include="wrappers\CallbackHandler.cpp" />
     <ClCompile Include="wrappers\Camera.cpp" />
     <ClCompile Include="wrappers\CameraManager.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="scheduling\TakePictureTask.h" />
     <ClInclude Include="scheduling\Task.h" />
     <ClInclude Include="scheduling\TaskRunner.h" />
+    <ClInclude Include="scheduling\TimeLapser.h" />
     <ClInclude Include="wrappers\CallbackHandler.h" />
     <ClInclude Include="wrappers\Camera.h" />
     <ClInclude Include="wrappers\CameraManager.h" />

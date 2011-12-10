@@ -149,6 +149,9 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	preview_bitmap_ = CreateDIBSection(NULL, (const BITMAPINFO*)&bitmapInfo, DIB_RGB_COLORS, (void**) &preview_bytes_, NULL, 0);
 	camera_image_.SetBitmap(preview_bitmap_);
 
+	// Create the TimeLapser
+	time_lapser_ = new TimeLapser(task_runner_, m_hWnd);
+
 	// Browse dialog
 	open_folder_dialog_ = new CFolderDialog(m_hWnd, _T("Pick the destination folder"));
 	return TRUE;
@@ -180,6 +183,7 @@ LRESULT CMainDlg::OnCancel(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOO
 
 void CMainDlg::CloseDialog(int nVal)
 {
+	time_lapser_->Stop();
 	task_runner_->InsertTask(new CloseSessionTask(camera_));
 	// We wait the worker's loop time to give it a change to unpile the task, then wait for it to finish whatever the result
 	Sleep(TaskRunner::kLoopWaitMilliseconds);
@@ -199,6 +203,7 @@ CMainDlg::~CMainDlg(void)
 {
 	delete(callback_handler_);
 	delete(task_runner_);
+	delete(time_lapser_);
 	delete(camera_);
 	delete(open_folder_dialog_);
 	if (NULL != preview_bitmap_ && NULL != DeleteObject(preview_bitmap_))
