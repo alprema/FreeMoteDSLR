@@ -38,6 +38,8 @@ public:
 		COMMAND_HANDLER(IDC_SPEED_COMBO, CBN_SELCHANGE, OnSettingsComboSelchange)
 		COMMAND_HANDLER(IDC_ENABLE_SAVE_CHECKBOX, BN_CLICKED, OnEnableSaveCheckboxClicked)
 		COMMAND_HANDLER(IDC_BROWSE_BUTTON, BN_CLICKED, OnBrowseButtonClicked)
+		COMMAND_HANDLER(IDC_START_TIMELAPSE_BUTTON, BN_CLICKED, OnStartTimelapseButtonClicked)
+		COMMAND_HANDLER(IDC_STOP_TIMELAPSE_BUTTON, BN_CLICKED, OnStopTimelapseButtonClicked)
 	END_MSG_MAP()
 
 // Handler prototypes (uncomment arguments if needed):
@@ -56,9 +58,10 @@ public:
 	void CloseDialog(int nVal);
 private:
 	Camera* camera_;
-	static LRESULT CMainDlg::takePictureAsync(LPVOID param);
 	// Selects the path in the path box as the "target path" after verification
 	void selectPath();
+	// Enables / disables the controls depending on the status of the timelapsing
+	void toggleTimeLapseUI(bool timeLapsing);
 	CStatic camera_image_;
 	CFolderDialog* open_folder_dialog_;
 	// The bitmap handle to the preview
@@ -68,6 +71,7 @@ private:
 	static const int kPreviewWidth;
 	static const int kPreviewHeight;
 	static const int kMaxTargetPathLength;
+	static const int kMaxTimeoutDigits;
 	TaskRunner* task_runner_;
 	CallbackHandler* callback_handler_;
 	TimeLapser* time_lapser_;
@@ -79,4 +83,6 @@ public:
 	LRESULT OnSettingsComboSelchange(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnEnableSaveCheckboxClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnBrowseButtonClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT OnStartTimelapseButtonClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT OnStopTimelapseButtonClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 };

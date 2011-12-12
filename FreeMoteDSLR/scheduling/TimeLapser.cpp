@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "TimeLapser.h"
 #include "../exceptions/SysException.h"
+#include "../wrappers/Camera.h"
+#include "TakePictureTask.h"
 
-TimeLapser::TimeLapser(TaskRunner* taskRunner, HWND windowHandlerToBindTimerTo)
-	:task_runner_(taskRunner), started_(false), window_handler_to_bind_timer_to_(windowHandlerToBindTimerTo)
+TimeLapser::TimeLapser(TaskRunner* taskRunner, Camera* camera, HWND windowHandlerToBindTimerTo)
+	:task_runner_(taskRunner), started_(false), window_handler_to_bind_timer_to_(windowHandlerToBindTimerTo), camera_(camera)
 {
 }
 
@@ -28,4 +30,5 @@ void TimeLapser::Stop()
 void CALLBACK TimeLapser::TimerProc(__in_opt HWND hwnd, __in UINT uMsg, __in UINT_PTR idEvent, __in_opt DWORD dwTime)
 {
 	TimeLapser* that = (TimeLapser*)idEvent;
+	that->task_runner_->InsertTask(new TakePictureTask(that->camera_));
 }

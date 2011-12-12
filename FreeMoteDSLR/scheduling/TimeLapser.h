@@ -1,10 +1,11 @@
 #pragma once
 #include "TaskRunner.h"
+#include "../wrappers/Camera.h"
 
 class TimeLapser
 {
 public:
-	TimeLapser(TaskRunner* taskRunner, HWND windowHandlerToBindTimerTo);
+	TimeLapser(TaskRunner* taskRunner, Camera* camera, HWND windowHandlerToBindTimerTo);
 	// Will try to stop the time lapse if it's running
 	~TimeLapser(void);
 	// Starts the time lapse with "timeOutMilliseconds" between every triggering
@@ -13,6 +14,7 @@ public:
 	void Stop();
 private:
 	TaskRunner* task_runner_;
+	Camera* camera_;
 	// The callback called by the Win32 API, we use the idEvent to pass a pointer to
 	// the instance of TimeLapser which created the timer
 	static void CALLBACK TimerProc(__in_opt HWND hwnd, __in UINT uMsg, __in UINT_PTR idEvent, __in_opt DWORD dwTime);

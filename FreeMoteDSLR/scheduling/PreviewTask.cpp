@@ -19,7 +19,7 @@ void PreviewTask::ExitProcess(bool success)
 void PreviewTask::Process()
 {
 	EdsImageInfo imageInfo;
-	EdsError err = EdsGetImageInfo(image_->GetPicure(), kEdsImageSrc_RAWFullView, &imageInfo);
+	EdsError err = EdsGetImageInfo(image_->GetPicure(), kEdsImageSrc_FullView, &imageInfo);
 	if (EDS_ERR_OK != err)
 		return ExitProcess(false);
 	EdsStreamRef jpegStream = NULL;

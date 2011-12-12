@@ -36,6 +36,7 @@
 const int CMainDlg::kPreviewWidth = 800;
 const int CMainDlg::kPreviewHeight = 533; // Make sure to keep 1.5 ratio
 const int CMainDlg::kMaxTargetPathLength = 255;
+const int CMainDlg::kMaxTimeoutDigits = 4;
 
 BOOL CMainDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -150,10 +151,14 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	camera_image_.SetBitmap(preview_bitmap_);
 
 	// Create the TimeLapser
-	time_lapser_ = new TimeLapser(task_runner_, m_hWnd);
+	time_lapser_ = new TimeLapser(task_runner_, camera_,  m_hWnd);
 
 	// Browse dialog
 	open_folder_dialog_ = new CFolderDialog(m_hWnd, _T("Pick the destination folder"));
+
+	// Limiting timeout to kMaxTimeoutDigits digits
+	CEdit timeoutEdit = (CEdit)GetDlgItem(IDC_TIMEOUT_EDIT);
+	timeoutEdit.SetLimitText(kMaxTimeoutDigits);
 	return TRUE;
 }
 
@@ -270,4 +275,33 @@ void CMainDlg::selectPath()
 		return;
 	}
 	callback_handler_->SetDownloadTarget(new WTL::CString(returnedPath));
+}
+
+
+void CMainDlg::toggleTimeLapseUI(bool timeLapsing)
+{
+	CButton stopTimeLapseButton = (CButton)GetDlgItem(IDC_STOP_TIMELAPSE_BUTTON);
+	CButton startTimeLapseButton = (CButton)GetDlgItem(IDC_START_TIMELAPSE_BUTTON);
+	CButton takePictureButton = (CButton)GetDlgItem(ID_TAKE_PICTURE);
+	stopTimeLapseButton.EnableWindow(timeLapsing);
+	startTimeLapseButton.EnableWindow(!timeLapsing);
+	takePictureButton.EnableWindow(!timeLapsing);
+}
+
+LRESULT CMainDlg::OnStartTimelapseButtonClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
+	toggleTimeLapseUI(true);
+	CEdit timeoutEdit = (CEdit)GetDlgItem(IDC_TIMEOUT_EDIT);
+	TCHAR timeoutString[CMainDlg::kMaxTimeoutDigits];
+	timeoutEdit.GetWindowText(timeoutString, CMainDlg::kMaxTimeoutDigits);
+	time_lapser_->Start(atoi((const char*)timeoutString) * 1000);
+	return 0;
+}
+
+
+LRESULT CMainDlg::OnStopTimelapseButtonClicked(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
+	time_lapser_->Stop();
+	toggleTimeLapseUI(false);
+	return 0;
 }
